@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row a">
+            <div class="col-lg-1 b">
+                <button type="button" class="btn btn-success" id="prev">&lt;&lt;</button>
+            </div>
+            <div class="col-lg-10 c">
+                <div class="mydiv" id="mydiv1">
+                    <h3>1</h3>
+                </div>
+                <div class="mydiv" id="mydiv2">
+                    <h3>2</h3>
+                </div>
+                <div class="mydiv" id="mydiv3">
+                    <h3>3</h3>
+                </div>
+                <div class="mydiv" id="mydiv4">
+                    <h3>4</h3>
+                </div>
+                <div class="mydiv" id="mydiv5">
+                    <h3>5</h3>
+                </div>
+                <div class="mydiv" id="mydiv6">
+                    <h3>6</h3>
+                </div>
+
+            </div>
+            <div class="col-lg-1 d">
+                <button type="button" class="btn btn-success" id="Next">&gt;&gt;</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            var i = 1;
+            $("#Next").click(function() {
+                onNext(i);
+                i++;
+            });
+            $("#prev").click(function() {
+                onPrev(i);
+                i--;
+
+            });
+        });
+
+
+        // $("#next").click(function() {
+        //     alert("aaa");
+        // });
+        function onNext(i) {
+
+            // $("#mydiv1").hide(2000, function() {
+            $("#mydiv" + i).animate({
+                left: "-35%"
+            }, 2000, function() {
+                $("#mydiv" + i).hide();
+
+            });
+            $("#mydiv" + (i + 1)).animate({
+                left: "-35%"
+            }, 2000, function() {
+                $("#mydiv" + (i + 1)).css("left", "1%");
+            });
+            $("#mydiv" + (i + 2)).animate({
+                left: "-35%"
+            }, 2000, function() {
+                $("#mydiv" + (i + 2)).css("left", "1%");
+                $("#mydiv" + (i + 3)).show();
+            });
+            // $("#mydiv4").show();
+        }
+
+        // $("#prev").click(function() {
+        //     alert("aaa");
+        // });
+
+
+        function onPrev(i) {
+
+            // alert("previuos clicked")
+            // alert(i);
+
+            // if (i <= 1) {
+
+            //     return false;
+
+            // } else {
+            $("#mydiv" + (i + 2)).animate({
+                left: "35%"
+            }, 2000, function() {
+                $("#mydiv" + (i + 2)).hide();
+
+            })
+            $("#mydiv" + (i + 1)).animate({
+                left: "35%"
+            }, 2000, function() {
+                $("#mydiv" + (i + 1)).css("left", "1%")
+            })
+            $("#mydiv" + (i)).animate({
+                left: "35%"
+            }, 2000, function() {
+                $("#mydiv" + (i)).css("left", "1%")
+                $("#mydiv" + (i - 1)).show()
+                $("#mydiv" + (i - 1)).animate({
+                    left: "1%"
+                })
+
+            })
+
+            // $("#mydiv1").show()
+        }
+    </script>
+    <style>
+        .a {
+            background: #252526;
+            height: 300px;
+        }
+        
+        .b {
+            position: relative;
+            background: #64635F;
+            height: 300px;
+            z-index: 1;
+        }
+        
+        .b button {
+            margin: 130px auto;
+        }
+        
+        .d {
+            position: relative;
+            background: #64635F;
+            height: 300px;
+            z-index: 1;
+        }
+        
+        .d button {
+            margin: 130px auto;
+        }
+        
+        .mydiv {
+            background: linear-gradient(#E9EBEE, green);
+            width: 30%;
+            height: 260px;
+            margin: 20px 10px;
+            float: left;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #mydiv4,
+        #mydiv5,
+        #mydiv6 {
+            display: none;
+        }
+    </style>
+
+</body>
+
+</html>
